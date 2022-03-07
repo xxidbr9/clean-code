@@ -3,7 +3,7 @@
 
 ## Table of Contents
 
-  1. [Tipe Data](#types)
+  1. [Tipe Data](#tipe-data)
   1. [Referensi](#references)
   1. [Objects](#objects)
   1. [Arrays](#arrays)
