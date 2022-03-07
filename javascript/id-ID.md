@@ -1,7 +1,7 @@
 # Javascript Clean Code Bahasa Indonesia
 
 
-## Table of Contents
+## Daftar Isi
 
   1. [Tipe Data](#tipe-data)
   1. [Referensi](#references)
@@ -67,4 +67,4 @@
     console.log(foo[0], bar[0]); // => 9, 9
     ```
 
-**[⬆ Kembali ke daftar isi](#table-of-contents)**
+**[⬆ Kembali ke daftar isi](#daftar-isi)**
