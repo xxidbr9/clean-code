@@ -29,7 +29,7 @@
   1. [Accessors](#accessors)
   
 
-  ## Types
+  ## Tipe Data
 
   <a name="types--primitives"></a><a name="1.1"></a>
   - [1.1](#types--primitives) **Primitives**: Saat mengakses tipe data primitif, tipe data akan langsung terdefinisi berdasarkan nilainya (value).
