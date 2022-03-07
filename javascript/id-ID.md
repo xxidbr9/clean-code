@@ -49,7 +49,7 @@
     console.log(foo, bar); // => 1, 9
     ```
 
-    - Symbols dan BigInts tidak dapat di-polyfill dengan tepat, sehingga tidak dapat digunakan saat menargetkan browser/enviroment yang belum didukung.
+    - `Symbols` dan `BigInts` tidak dapat di-polyfill dengan tepat, sehingga tidak dapat digunakan saat menargetkan browser/enviroment yang belum didukung.
     
     > polyfill adalah kode yang mengimplementasikan fitur pada browser web yang tidak mendukung fitur tersebut.
 
