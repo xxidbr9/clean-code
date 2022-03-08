@@ -1,4 +1,4 @@
-# Javascript Clean Code Bahasa Indonesia
+# Javascript Clean Code Bahasa Indonesia{
 
 ## Daftar Isi
 
@@ -124,5 +124,178 @@
   didalam kode diatas, bisa dilihat `a` dan `b` akan me-return ReferenceError, tapi `c` akan menampilkan angka. ini karena `a` dan `b` itu block scoped, tapi `c` itu function-scoped.
 
   > bisa dicoba lewat terminal
+
+**[⬆ Kembali ke daftar isi](#daftar-isi)**
+
+## Objects
+
+<a name="objects--no-new"></a><a name="3.1"></a>
+
+- [3.1](#objects--no-new) gunakan syntax biasa (literal syntax) untuk membuat object baru. eslint: [`no-new-object`](https://eslint.org/docs/rules/no-new-object.html)
+
+  ```javascript
+  // bad
+  const item = new Object();
+  // good
+  const item = {};
+  ```
+
+<a name="es6-computed-properties"></a><a name="3.4"></a>
+
+- [3.2](#es6-computed-properties) Pakai nama property saat membuat objects dengan nama properti yang dynamics.
+
+  > Kenapa? dengan ini bisa mendifinisikan semua properti didalam satu tempate.
+
+  ```javascript
+  function getKey(k) {
+    return `a key named ${k}`;
+  }
+
+  // bad
+  const obj = {
+    id: 5,
+    name: "Surabaya"
+  };
+  obj[getKey("enabled")] = true;
+
+  // good
+  const obj = {
+    id: 5,
+    name: "San Francisco",
+    [getKey("enabled")]: true
+  };
+  ```
+
+<a name="es6-object-shorthand"></a><a name="3.5"></a>
+
+- [3.3](#es6-object-shorthand) Pakai shorthand saat membuat object method. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand.html)
+
+  ```javascript
+  // bad
+  const atom = {
+    value: 1,
+    addValue: function (value) {
+      return atom.value + value;
+    }
+  };
+
+  // good
+  const atom = {
+    value: 1,
+    addValue(value) {
+      return atom.value + value;
+    }
+  };
+  ```
+
+<a name="es6-object-concise"></a><a name="3.6"></a>
+
+- [3.4](#es6-object-concise) Pakai nama sebuah variable, jika properti memeiliki key yang sama dengan variable (property value shorthand). eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand.html)
+
+  > Why? It is shorter and descriptive.
+
+  ```javascript
+  const uzumakiNaruto = "Naruto Uzumaki";
+  // bad
+  const ninja = {
+    uzumakiNaruto: uzumakiNaruto
+  };
+
+  // good
+  const ninja = {
+    uzumakiNaruto
+  };
+  ```
+
+<a name="objects--grouped-shorthand"></a><a name="3.7"></a>
+
+- [3.5](#objects--grouped-shorthand) Menempatkan shorthand dipaling atas dalam pembuatan object.
+
+  > Kenapa? ini mempermudah dalam mendeteksi keberadaan shorthand.
+
+  ```javascript
+  const uzumakiNaruto = "Naruto Uzumaki";
+  const sasukeUchiha = "Uchiha Sasuke";
+
+  // bad
+  const ninja = {
+    madara: "Madara Uchiha",
+    sasukeUchiha,
+    hinata: "Hinata Hyuga",
+    uzumakiNaruto
+  };
+
+  // good
+  const ninja = {
+    sasukeUchiha,
+    uzumakiNaruto,
+    madara: "Madara Uchiha",
+    hinata: "Hinata Hyuga"
+  };
+  ```
+
+<a name="objects--quoted-props"></a><a name="3.8"></a>
+
+- [3.6](#objects--quoted-props) hanya quote / petik. eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props.html)
+
+  > Kenapa? In general we consider it subjectively easier to read. It improves syntax highlighting, and is also more easily optimized by many JS engines.
+
+  ```javascript
+  // bad
+  const bad = {
+    foo: 3,
+    bar: 4,
+    "data-blah": 5
+  }; // sebenarnya valid, tetapi vscode / IDE lain untuk menebak key dari object
+
+  // good
+  const good = {
+    foo: 3,
+    bar: 4,
+    "data-blah": 5
+  };
+  ```
+
+<a name="objects--prototype-builtins"></a>
+
+- [3.7](#objects--prototype-builtins) Jangan pernah memanggil `Object.prototype` methods secara langsung, seperti `hasOwnProperty`, `propertyIsEnumerable`, dan `isPrototypeOf`. eslint: [`no-prototype-builtins`](https://eslint.org/docs/rules/no-prototype-builtins)
+
+  > Kenapa? sebuah methods mungkin dimiliki juga didalam properti pada objek yang dimaksud, `{ hasOwnProperty: false }` - atau, object kemungkinan `null` atau object kosong (`Object.create(null)`).
+
+  ```javascript
+  // bad
+  console.log(object.hasOwnProperty(key));
+
+  // good
+  console.log(Object.prototype.hasOwnProperty.call(object, key));
+
+  // best
+  const has = Object.prototype.hasOwnProperty; // cache diawal, di module scope.
+  console.log(has.call(object, key));
+
+  /* atau menggunakan cara aman untuk mencari key dalam object */
+  import has from "has"; // https://www.npmjs.com/package/has
+  console.log(has(object, key));
+  ```
+
+<a name="objects--rest-spread"></a>
+
+- [3.8](#objects--rest-spread) Prefer ke object spread syntax dari pada [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) untuk shallow-copy / (copy full) sebuah objects. Gunakan object rest parameter syntax untuk membuat object baru dengan properti yang sama. eslint: [`prefer-object-spread`](https://eslint.org/docs/rules/prefer-object-spread)
+
+  ```javascript
+  // very bad
+  const original = { a: 1, b: 2 };
+  const copy = Object.assign(original, { c: 3 }); // ini merubah / mutates `original` ಠ_ಠ
+  delete copy.a; // sama juga seperti ini
+
+  // bad
+  const original = { a: 1, b: 2 };
+  const copy = Object.assign({}, original, { c: 3 }); // copy => { a: 1, b: 2, c: 3 }
+
+  // good
+  const original = { a: 1, b: 2 };
+  const copy = { ...original, c: 3 }; // copy => { a: 1, b: 2, c: 3 }
+  const { a, ...noA } = copy; // noA => { b: 2, c: 3 }
+  ```
 
 **[⬆ Kembali ke daftar isi](#daftar-isi)**
