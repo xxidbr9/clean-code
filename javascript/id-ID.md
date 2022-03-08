@@ -194,7 +194,7 @@
 
 - [3.4](#es6-object-concise) Pakai nama sebuah variable, jika properti memeiliki key yang sama dengan variable (property value shorthand). eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand.html)
 
-  > Why? It is shorter and descriptive.
+  > Kenapa? lebih singkat dan descriptive.
 
   ```javascript
   const uzumakiNaruto = "Naruto Uzumaki";
