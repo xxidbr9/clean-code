@@ -146,11 +146,11 @@
 
 - [3.2](#es6-computed-properties) Pakai nama property saat membuat objects dengan nama properti yang dynamics.
 
-  > Kenapa? dengan ini bisa mendifinisikan semua properti didalam satu tempate.
+  > Kenapa? dengan ini bisa mendifinisikan semua properti didalam satu tempat.
 
   ```javascript
   function getKey(k) {
-    return `a key named ${k}`;
+    return `key dengan nama ${k}`;
   }
 
   // bad
@@ -163,7 +163,7 @@
   // good
   const obj = {
     id: 5,
-    name: "San Francisco",
+    name: "Surabaya",
     [getKey("enabled")]: true
   };
   ```
