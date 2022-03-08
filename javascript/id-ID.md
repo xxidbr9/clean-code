@@ -248,7 +248,7 @@
     "foo": 3,
     "bar": 4,
     "data-blah": 5
-  }; // sebenarnya valid, tetapi vscode / IDE lain untuk menebak key dari object
+  }; // sebenarnya valid, tetapi vscode / IDE lain susah untuk menebak key dari object
 
   // good
   const good = {
