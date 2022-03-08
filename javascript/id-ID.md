@@ -238,7 +238,7 @@
 
 <a name="objects--quoted-props"></a><a name="3.8"></a>
 
-- [3.6](#objects--quoted-props) hanya quote / petik. eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props.html)
+- [3.6](#objects--quoted-props) hanya quote / petik yang dipakai untuk mendifinisikan key yang tidak valid (invalid identifiers). eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props.html)
 
   > Kenapa? dalam kegiatan sehari" kita lebih mempertimbangkan kemudahan dalam membaca kode. dan bisa dideteksi IDE untuk meng highlight sebuah syntax, dan lebih mudah untuk engine js saat menjalankan script.
 
