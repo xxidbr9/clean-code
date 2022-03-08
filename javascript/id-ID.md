@@ -81,6 +81,7 @@
   // bad
   var a = 1;
   var b = 2;
+
   // good
   const a = 1;
   const b = 2;
@@ -98,7 +99,8 @@
   if (true) {
     count += 1;
   }
-  // good, use the let.
+
+  // good, pakai let.
   let count = 1;
   if (true) {
     count += 1;
@@ -110,7 +112,7 @@
 - [2.3](#references--block-scope) NB: `let` dan `const` itu block-scoped, dimana hanya `var` yang function-scoped.
 
   ```javascript
-  // const and let only exist in the blocks they are defined in.
+  // const dan let hanya muncul didalam blocks mereka tidak terdefinisi.
   {
     let a = 1;
     const b = 1;
@@ -238,13 +240,13 @@
 
 - [3.6](#objects--quoted-props) hanya quote / petik. eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props.html)
 
-  > Kenapa? In general we consider it subjectively easier to read. It improves syntax highlighting, and is also more easily optimized by many JS engines.
+  > Kenapa? dalam kegiatan sehari" kita lebih mempertimbangkan kemudahan dalam membaca kode. dan bisa dideteksi IDE untuk meng highlight sebuah syntax, dan lebih mudah untuk engine js saat menjalankan script.
 
   ```javascript
   // bad
   const bad = {
-    foo: 3,
-    bar: 4,
+    "foo": 3,
+    "bar": 4,
     "data-blah": 5
   }; // sebenarnya valid, tetapi vscode / IDE lain untuk menebak key dari object
 
